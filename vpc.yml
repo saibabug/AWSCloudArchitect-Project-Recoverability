@@ -235,10 +235,7 @@ Resources:
       Port: 3306
       PubliclyAccessible: false
       StorageType: gp2
-      Tags:
-      - key: Name
-        Value: udacity
-      VPCSSecurityGroups: !Ref DatabaseSecurityGroup  
+      DBSecurityGroups: [!Ref DatabaseSecurityGroup]
           
 
 Outputs:
