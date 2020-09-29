@@ -1,0 +1,55 @@
+login as: ec2-user
+Authenticating with public key "project1-secondary"
+Last login: Tue Sep 29 03:27:26 2020 from 204.83.217.131
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+No packages needed for security; 2 packages available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-10-2-11-54 ~]$ mysql -h udacity-secondary.cfgrzt0fvcku.us-east-2.rd                                                                             s.amazonaws.com -P 3306 -u venkata -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 5.7.30-log Source distribution
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use udacity;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from Project_udacity_table;
++---------+------------------+------------+----------+-------------+------------                                                                             ---------+
+| number1 | Name             | start_date | statusID | description | created_at                                                                                       |
++---------+------------------+------------+----------+-------------+------------                                                                             ---------+
+|       1 | UDACITY project  | 2020-09-29 |        1 | Record one  | 2020-09-29                                                                              02:35:26 |
+|       2 | UDACITY project1 | 2020-09-29 |        2 | Record two  | 2020-09-29                                                                              02:35:28 |
++---------+------------------+------------+----------+-------------+------------                                                                             ---------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO Project_udacity_table
+    ->     (name,start_date,statusID,description)
+    ->      values('UDACITY project2',CURDATE(),3,'Record three');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Project_udacity_table;
++---------+------------------+------------+----------+--------------+-----------                                                                             ----------+
+| number1 | Name             | start_date | statusID | description  | created_at                                                                                       |
++---------+------------------+------------+----------+--------------+-----------                                                                             ----------+
+|       1 | UDACITY project  | 2020-09-29 |        1 | Record one   | 2020-09-29                                                                              02:35:26 |
+|       2 | UDACITY project1 | 2020-09-29 |        2 | Record two   | 2020-09-29                                                                              02:35:28 |
+|       3 | UDACITY project2 | 2020-09-29 |        3 | Record three | 2020-09-29                                                                              03:52:27 |
++---------+------------------+------------+----------+--------------+-----------                                                                             ----------+
+3 rows in set (0.00 sec)
+
+mysql>
